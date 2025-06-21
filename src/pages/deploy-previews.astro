@@ -1,40 +1,76 @@
----
-import Layout from '../components/layout.astro';
----
-
-<Layout
-  title="Deploy Previews"
-  description="See and share your changes in a production environment so you can ship with confidence. Gather feedback in your preferred project management tool right through your Deploy Previews!"
->
-  <main>
-    <h2>Try out Deploy Previews.</h2>
-    <ol>
-      <li>
-        Create a new branch in your repo called{' '}
-        <code>deploy-preview-test</code>.
-      </li>
-      <li>
-        Edit <code>pages/deploy-previews.js</code> to edit the headline “Try
-        out Deploy Previews.” so it reads, “This is a Deploy Preview!”
-      </li>
-      <li>Save the change, commit it, and push it to your GitHub repo.</li>
-      <li>
-        Open a pull request against the <code>main</code> branch from the{' '}
-        <code>deploy-preview-test</code> branch.
-      </li>
-      <li>
-        Visit <a href="https://app.netlify.com">app.netlify.com</a> —
-        Netlify will automatically build the Deploy Preview.
-      </li>
-      <li>
-        Once the site is done building, visit the generated URL to access your
-        changes!
-      </li>
-    </ol>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Sky Spa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Arial", sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      text-shadow: 1px 1px 4px #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ffeb3b;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.8;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      background-color: #ffeb3b;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #fdd835;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Luxury Sky Spa</h1>
     <p>
-      <a href="https://docs.netlify.com/site-deploys/deploy-previews/">
-        Learn about Deploy Previews in the Netlify docs.
-      </a>
+      צימר זוגי עם ספא פרטי מול נוף הררי מרהיב — בהר שמואל ליד ירושלים.<br>
+      בישוב הפסטורלי הר שמואל, למרגלות קבר שמואל הנביא ובמרחק דקות משכונת רמות בירושלים, מחכה לכם צימר מפנק ומרווח עם נוף עוצר נשימה.
+      <br><br>
+      <strong>במקום תיהנו מ:</strong><br>
+      🌿 סאונה יבשה פרטית<br>
+      🛁 ג'קוזי זוגי ענק על הגג<br>
+      🧼 רמת ניקיון גבוהה מאוד<br>
+      🛏️ חדר שינה מרווח ומאובזר עד הפרטים הקטנים<br>
+      🧃 כיבוד עשיר: שתייה חמה וקרה, מגש פירות, בירות וחטיפים
+      <br><br>
+      מתאים במיוחד לזוגות שמחפשים שקט, שלווה וניתוק אמיתי מהשגרה.<br>
+      פרטיות מוחלטת – גם אפשרות לאירוח עד 4 נפשות לפי שעה.
     </p>
-  </main>
-</Layout>
+    <a href="tel:0533369890" class="button">להזמנה ופרטים – 053-3369890</a>
+  </div>
+</body>
+</html>
