@@ -13,19 +13,24 @@
       color: #fff;
       direction: rtl;
     }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 10px;
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 10px;
-    }
-    .gallery img {
+    .slider {
+      position: relative;
       width: 100%;
-      height: 300px;
-      object-fit: cover;
+      max-width: 800px;
+      margin: 30px auto;
+      overflow: hidden;
       border-radius: 12px;
+    }
+    .slides {
+      display: flex;
+      width: 900%; /* 9 images */
+      transition: transform 1s ease-in-out;
+    }
+    .slides img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      flex: 0 0 100%;
     }
     .container {
       background-color: rgba(0, 0, 0, 0.7);
@@ -77,20 +82,37 @@
     .whatsapp-button i {
       margin-left: 8px;
     }
-  </style>
+  .dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 5px;
+      background-color: #555;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .dot.active {
+      background-color: #ffeb3b;
+    }
+</style>
 </head>
 <body>
-  <div class="gallery">
-    <img src="/images/1eca68ae-214f-443b-a82f-b2a609e1211b.jpg" alt="1"/>
-    <img src="/images/4b7d35f9-0584-46e3-b3f2-9cff5427d86e.jpg" alt="2"/>
-    <img src="/images/7ec3cc61-5abc-47f6-9c52-2478afbdec93.jpg" alt="3"/>
-    <img src="/images/280856df-aea6-43ee-831a-0a54fdf3e767.jpg" alt="4"/>
-    <img src="/images/876c577b-0833-4323-b5f5-7d5dc608f5a1.jpg" alt="5"/>
-    <img src="/images/8ca3e30c-5200-4014-8cb8-0d306e81f87c.jpg" alt="6"/>
-    <img src="/images/946fdb76-ea4a-4450-96bd-9a1c929a58d8.jpg" alt="7"/>
-    <img src="/images/9ebf306d-1808-4624-bc81-4bca69aa5e05.jpg" alt="8"/>
-    <img src="/images/9f76365d-472c-494f-87ac-9ddda1983f74.jpg" alt="9"/>
-  </div>
+  <div class="slider">
+    <div class="slides" id="slides">
+      <img src="/images/1eca68ae-214f-443b-a82f-b2a609e1211b.jpg" alt="1"/>
+      <img src="/images/4b7d35f9-0584-46e3-b3f2-9cff5427d86e.jpg" alt="2"/>
+      <img src="/images/7ec3cc61-5abc-47f6-9c52-2478afbdec93.jpg" alt="3"/>
+      <img src="/images/280856df-aea6-43ee-831a-0a54fdf3e767.jpg" alt="4"/>
+      <img src="/images/876c577b-0833-4323-b5f5-7d5dc608f5a1.jpg" alt="5"/>
+      <img src="/images/8ca3e30c-5200-4014-8cb8-0d306e81f87c.jpg" alt="6"/>
+      <img src="/images/946fdb76-ea4a-4450-96bd-9a1c929a58d8.jpg" alt="7"/>
+      <img src="/images/9ebf306d-1808-4624-bc81-4bca69aa5e05.jpg" alt="8"/>
+      <img src="/images/9f76365d-472c-494f-87ac-9ddda1983f74.jpg" alt="9"/>
+  <div class="dots" id="dots"></div>
 
   <div class="container">
     <h1>Luxury Sky Spa</h1>
@@ -113,5 +135,38 @@
       <i class="fab fa-whatsapp"></i> צור קשר בווטסאפ
     </a>
   </div>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 4000);
+      const dotsContainer = document.getElementById("dots");
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => {
+        currentIndex = i;
+        updateSlider();
+      });
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlider() {
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      document.querySelectorAll(".dot").forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === currentIndex);
+      });
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlider();
+    }, 4000);
 </body>
 </html>
