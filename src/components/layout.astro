@@ -32,6 +32,21 @@
       object-fit: cover;
       flex: 0 0 100%;
     }
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .prev { right: 10px; }
+    .next { left: 10px; }
+
     .container {
       background-color: rgba(0, 0, 0, 0.7);
       padding: 30px;
@@ -82,7 +97,7 @@
     .whatsapp-button i {
       margin-left: 8px;
     }
-  .dots {
+    .dots {
       text-align: center;
       margin-top: 10px;
     }
@@ -98,10 +113,12 @@
     .dot.active {
       background-color: #ffeb3b;
     }
-</style>
+  </style>
 </head>
 <body>
   <div class="slider">
+    <button class="nav-button next" onclick="prevSlide()">&#10095;</button>
+    <button class="nav-button prev" onclick="nextSlide()">&#10094;</button>
     <div class="slides" id="slides">
       <img src="/images/1eca68ae-214f-443b-a82f-b2a609e1211b.jpg" alt="1"/>
       <img src="/images/4b7d35f9-0584-46e3-b3f2-9cff5427d86e.jpg" alt="2"/>
@@ -112,7 +129,9 @@
       <img src="/images/946fdb76-ea4a-4450-96bd-9a1c929a58d8.jpg" alt="7"/>
       <img src="/images/9ebf306d-1808-4624-bc81-4bca69aa5e05.jpg" alt="8"/>
       <img src="/images/9f76365d-472c-494f-87ac-9ddda1983f74.jpg" alt="9"/>
-  <div class="dots" id="dots"></div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
 
   <div class="container">
     <h1>Luxury Sky Spa</h1>
@@ -141,11 +160,7 @@
     const slides = document.getElementById("slides");
     const totalSlides = slides.children.length;
 
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }, 4000);
-      const dotsContainer = document.getElementById("dots");
+    const dotsContainer = document.getElementById("dots");
     for (let i = 0; i < totalSlides; i++) {
       const dot = document.createElement("span");
       dot.classList.add("dot");
@@ -164,9 +179,19 @@
       });
     }
 
-    setInterval(() => {
+    function nextSlide() {
       currentIndex = (currentIndex + 1) % totalSlides;
       updateSlider();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+
+    setInterval(() => {
+      nextSlide();
     }, 4000);
+  </script>
 </body>
 </html>
