@@ -21,12 +21,12 @@
       overflow: hidden;
       border-bottom: 4px solid #ffeb3b;
     }
-    .slides {
-      display: flex;
+    $1
+      width: 100%;      display: flex;
       transition: transform 0.5s ease-in-out;
     }
-    .slides img {      width: 100%;
-      height: 400px;
+    $1
+      flex: 0 0 100%;      height: 400px;
       object-fit: cover;
       flex-shrink: 0;
     }
@@ -161,7 +161,7 @@
   const slides = document.getElementById('slides');
   const slidesCount = slides.querySelectorAll('img').length;
 
-  slides.style.width = (slidesCount * 100) + "%";
+  // Removed fixed width assignment – not needed when using flex: 0 0 100%
 
   function updateSlider() {
     slides.style.transform = 'translateX(' + (-currentIndex * (100 / slidesCount)) + '%)';
