@@ -157,48 +157,34 @@
   </div>
 
   <script>
-    let currentIndex = 0;
-    const slides = document.getElementById('slides');
-    const dotsContainer = document.getElementById('dots');
-    const slidesCount = slides.querySelectorAll('img').length;
+  let currentIndex = 0;
+  const slides = document.getElementById('slides');
+  const slidesCount = slides.querySelectorAll('img').length;
 
-    slides.style.width = (slidesCount * 100) + "%";
+  slides.style.width = (slidesCount * 100) + "%";
 
-    for (let i = 0; i < slidesCount; i++) {
-      const dot = document.createElement('span');
-      dot.classList.add('dot');
-      dot.addEventListener('click', () => setSlide(i));
-      dotsContainer.appendChild(dot);
-    }
+  function updateSlider() {
+    slides.style.transform = 'translateX(' + (-currentIndex * (100 / slidesCount)) + '%)';
+  }
 
-    const dots = document.querySelectorAll('.dot');
-
-    function updateSlider() {
-      slides.style.transform = 'translateX(' + (-currentIndex * (100 / slidesCount)) + '%)';
-      dots.forEach(dot => dot.classList.remove('active'));
-      if (dots[currentIndex]) {
-        dots[currentIndex].classList.add('active');
-      }
-    }
-
-    function moveSlide(n) {
-      currentIndex = (currentIndex + n + slidesCount) % slidesCount;
-      updateSlider();
-    }
-
-    function setSlide(n) {
-      currentIndex = n;
-      updateSlider();
-    }
-
-    document.getElementById('prevBtn').addEventListener('click', () => moveSlide(-1));
-    document.getElementById('nextBtn').addEventListener('click', () => moveSlide(1));
-
-    setInterval(() => {
-      moveSlide(1);
-    }, 5000);
-
+  function moveSlide(n) {
+    currentIndex = (currentIndex + n + slidesCount) % slidesCount;
     updateSlider();
-  </script>
+  }
+
+  function setSlide(n) {
+    currentIndex = n;
+    updateSlider();
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => moveSlide(-1));
+  document.getElementById('nextBtn').addEventListener('click', () => moveSlide(1));
+
+  setInterval(() => {
+    moveSlide(1);
+  }, 5000);
+
+  updateSlider();
+</script>
 </body>
 </html>
