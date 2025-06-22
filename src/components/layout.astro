@@ -21,7 +21,11 @@
       overflow: hidden;
       border-bottom: 4px solid #ffeb3b;
     }
-    $1width: calc(100% * 9);
+    .slides {
+      display: flex;
+      width: calc(100% * 9);
+      transition: transform 0.5s ease-in-out;
+    }
     }
     .slides img {
       width: 100%;
